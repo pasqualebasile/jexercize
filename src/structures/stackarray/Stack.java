@@ -1,9 +1,16 @@
 package structures.stackarray;
 
 public class Stack {
+  private static final int SIZE = 32;
   private int maxSize;
   private Node[] iStack;
   private int head;
+
+  public Stack() {
+    maxSize = SIZE;
+    iStack = new Node[maxSize];
+    head = -1;
+  }
 
   public Stack(int size) {
     maxSize = size;

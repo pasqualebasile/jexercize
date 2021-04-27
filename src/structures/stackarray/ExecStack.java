@@ -5,7 +5,7 @@ public class ExecStack {
 
   public static void main(String[] args) {
 
-    Stack stack = new Stack(SIZE);
+    Stack stack = new Stack();
     stack.push("uno");
     stack.push("due");
     stack.push("tre");
