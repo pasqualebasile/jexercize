@@ -1,7 +1,10 @@
 package oo.geometric;
 
-public class Figura {
+public interface Figura {
 
+  public double area();
+
+  public double perimetro();
 
 
 }

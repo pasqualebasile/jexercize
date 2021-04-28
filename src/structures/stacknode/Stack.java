@@ -17,10 +17,23 @@ public class Stack {
     this.head = new Node(s, this.head);
   }
 
-  public void pop() {
+  /**
+   * Ritorna il nodo sul top dello stack e lo elimina
+   * @return  un {@link Node}
+   * TODO: Dovrò modificare qualcosa nei moduli che utilizzano tale classe?
+   */
+  public Node pop() {
     if (this.head != null) {
+
+      // Creo una copia di un oggetto (manuale)
+      Node node = new Node(this.head);
+
+      // Setto i puntatori
       this.head = this.head.getPtr();
+      return node;
     }
+    // Nel caso non ci sia nulla sul top dello stack, ritorna NULL
+    return null;
     // Come gestiamo il caso in cui this.head == null ?
     // Come possiamo ritornare l'oggetto puntato ?
   }

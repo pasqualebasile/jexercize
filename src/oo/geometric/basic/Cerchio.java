@@ -1,6 +1,6 @@
 package oo.geometric.basic;
 
-public class Cerchio extends Ellisse{
+public class Cerchio extends Ellisse {
 
   public  Cerchio() {
   }

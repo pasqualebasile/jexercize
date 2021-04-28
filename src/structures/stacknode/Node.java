@@ -15,6 +15,14 @@ public class Node {
     this.ptr = ptr;
   }
 
+  /**
+   * Copy Constructor
+   * @param source
+   */
+  public Node(Node source) {
+    this(source.getData(),source.getPtr());
+  }
+
   public String getData() {
     return data;
   }

@@ -1,6 +1,8 @@
 package oo.geometric.basic;
 
-public class Ellisse {
+import oo.geometric.Figura;
+
+public class Ellisse implements Figura {
   private double smajor = 0.0;
   private double sminor = 0.0;
 
@@ -9,7 +11,9 @@ public class Ellisse {
   }
 
 
-  // Costrutture con Argomenti
+  /**
+   *  Costrutture con Argomenti
+   */
   public Ellisse(double semiAsseMaggiore, double semiAsseMinore) {
     smajor = semiAsseMaggiore;
     sminor = semiAsseMinore;

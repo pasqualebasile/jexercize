@@ -14,20 +14,20 @@ public class ExecStack {
 
 
     System.out.println(stack.peek().getData());
-    stack.pop();
-    System.out.println(stack.peek().getData());
-    stack.pop();
-    System.out.println(stack.peek().getData());
+    Node a = stack.pop();
+    System.out.println(a.getData());
+    Node b = stack.pop();
+    System.out.println(b.getData());
     stack.pop();
     // System.out.println(stack.peek().getData());
 
     //
-    Stack unoStackMoltoGigante = new Stack();
+/*    Stack unoStackMoltoGigante = new Stack();
 
     for (int i=0; i<1000; i++) {
       unoStackMoltoGigante.push(String.valueOf(i));
     }
-    System.out.println(unoStackMoltoGigante.peek().getData());
+    System.out.println(unoStackMoltoGigante.peek().getData());*/
 
   }
 
