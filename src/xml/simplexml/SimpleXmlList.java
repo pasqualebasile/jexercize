@@ -10,13 +10,14 @@ public class SimpleXmlList {
 
   public static void main(String[] args) {
     Serializer serializer = new Persister();
-    List<Record1> record1List = new ArrayList<>();
-    record1List.add(new Record1("Primo", "I", 21));
+    List<One> oneList = new ArrayList<>();
+    oneList.add(new One("Primo", "I", 21));
+    oneList.add(new One("Secondo", "II", 21));
 
     StringWriter output = new StringWriter();
 
-    Record1List list = new Record1List();
-    list.setList(record1List);
+    OneList list = new OneList();
+    list.setList(oneList);
     // list.addList(new Record1("Primo", "I", 21));
     // list.addList(new Record1("Secondo", "II", 21));
 

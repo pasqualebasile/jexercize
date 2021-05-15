@@ -2,7 +2,7 @@ package xml.simplexml;
 import org.simpleframework.xml.*;
 
 @Root
-public class Record1 {
+public class One {
 
   @Element
   private String nome;
@@ -13,7 +13,7 @@ public class Record1 {
   @Attribute
   private int versione;
 
-  public Record1(String nome, String codice, int versione) {
+  public One(String nome, String codice, int versione) {
     this.nome = nome;
     this.codice = codice;
     this.versione = versione;
