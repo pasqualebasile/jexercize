@@ -2,4 +2,7 @@
 **/pgdata/**
 **/pgdump/**
 **/mongo/**
+**.jar
+**.tar.**
+
 
