@@ -1,0 +1,15 @@
+meta {
+  name: Greeting
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:8080/greeting?name=Pippo
+  body: none
+  auth: none
+}
+
+query {
+  name: Pippo
+}

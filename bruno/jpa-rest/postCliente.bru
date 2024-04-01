@@ -1,0 +1,18 @@
+meta {
+  name: postCliente
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/api/customer
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "firstName": "Paolino",
+    "lastName": "Paperino"
+  }
+}

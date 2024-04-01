@@ -1,0 +1,18 @@
+meta {
+  name: putCliente
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://localhost:8080/api/customer/1
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "firstName": "Quo",
+    "lastName": "Paperino"
+  }
+}

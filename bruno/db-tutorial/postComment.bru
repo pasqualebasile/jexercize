@@ -1,0 +1,17 @@
+meta {
+  name: postComment
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8080/api/tutorials/1/comments
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "content": "Commento al terzo tutorial"
+  }
+}
