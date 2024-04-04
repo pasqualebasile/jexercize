@@ -36,8 +36,11 @@ public class MainController {
     }
 
     @GetMapping(path="/all")
+    // ResponseEntity permette un maggiore controllo rispetto a @ResponseBody
+    // ResponseEntity represents the whole HTTP response: status code, headers, and body.
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userRepository.findAll();
+        // return ResponseEntity.ok(users);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 

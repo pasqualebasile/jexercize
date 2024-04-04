@@ -9,7 +9,9 @@
    https://medium.com/vena-engineering/the-inheritance-hashset-related-bug-with-lombok
    -36dbcfb04381. La prima volta va eseguito con `create` e dopo con `update`, altrimenti 
    non viene creata la sequence.
-5. 
+5. Gestione delle relazioni e uso di @JsonIgnore. Inoltre in 5.1: differenza tra 
+   `@ResponseBody` e `ResponseEntity<>` come return type;
+6. 
 
 
 
