@@ -6,8 +6,11 @@
    probabilmente serve ID se non è settata una sequence)
 4. Introduzione di Lombok + Introduzione utilizzo Sequence in Postgresql. Attenzione ai vari 
    problemi (quoting, sequence in create or sequence in update, ... ). Citare anche 
-   https://medium.com/vena-engineering/the-inheritance-hashset-related-bug-with-lombok-36dbcfb04381 
+   https://medium.com/vena-engineering/the-inheritance-hashset-related-bug-with-lombok
+   -36dbcfb04381. La prima volta va eseguito con `create` e dopo con `update`, altrimenti 
+   non viene creata la sequence.
 5. 
+
 
 
 
