@@ -16,7 +16,7 @@ public class Post {
 
     String title;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name="fk_user"),
     columnDefinition = "int8")
     @JsonIgnore
