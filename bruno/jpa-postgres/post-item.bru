@@ -1,0 +1,17 @@
+meta {
+  name: post-item
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8080/user/14/addPost
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title" : "Titolo"
+  }
+}
