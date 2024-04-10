@@ -22,6 +22,8 @@ public class MainController {
     private UserRepository userRepository;
 
     private static final Logger log = LoggerFactory.getLogger(MainController.class);
+    @Autowired
+    private PostRepository postRepository;
 
 
     @PostMapping(path="/add") // Map ONLY POST Requests
@@ -36,6 +38,35 @@ public class MainController {
         userRepository.save(n);
         return "Saved";
     }
+
+
+    @PostMapping(path="/addBody")
+    public @ResponseBody String postUser (@RequestBody User userBody) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        log.info("/addBody");
+        userRepository.save(userBody);
+        return "Saved";
+    }
+
+    @PostMapping(path="/{userId}/addPost")
+    public @ResponseBody Post postPost (@RequestBody  Post post, @PathVariable Long userId) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        log.info("/addPost");
+        // Faccio così per provocare un 500 sulla base di userId (nel caso non esista per chiudere la relazione)
+        // Se si usa uno userId che non esiste, allora viene fuori un 500 per fk violazione.
+        //
+        User user = new User();
+        user.setId(userId);
+        user.setName("Name");
+        user.setEmail("Mail");
+        post.setUser(user);
+        Post outPost = postRepository.save(post);
+        return outPost;
+    }
+
+
 
     @GetMapping(path="/all")
     // ResponseEntity permette un maggiore controllo rispetto a @ResponseBody
@@ -69,6 +100,24 @@ public class MainController {
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Utente non trovato")
         );
     }
+
+    /**
+     * Trying with Response entity
+     * @param id
+     * @return
+     */
+    @GetMapping(path="/findId/{Id}")
+    public ResponseEntity<?> getUserId(
+            @PathVariable(name = "Id") Integer id
+    ) {
+        log.info("Requested /findId/" + id);
+        return userRepository.findById(id)
+                             .map(user -> ResponseEntity.ok(user)) // If user is found, return 200 OK with the user
+                             .orElseGet(() -> ResponseEntity.notFound().build()); // If not found, return 404 Not Found
+    }
+
+
+
 
 }
 

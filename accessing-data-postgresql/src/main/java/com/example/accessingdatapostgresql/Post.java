@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="UserItems")
+@Table(name="user_items")
 public class Post {
 
     @Id
