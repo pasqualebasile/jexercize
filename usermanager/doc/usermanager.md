@@ -25,6 +25,11 @@ Va molto meglio specificando la join table. Risultato
 3. PK sulla coppia di campi
 4. FK corrette, ma con nomi non comprensibili
 
+### 3 - Caricamento di dati + Specifica FK
+1. Aggiunto caricamento dati mediante `data.sql` in resources
+2. Definita FK per la tabella di raccordo ManyToMany
+
+
 
 ## Riferimenti
 https://www.baeldung.com/jpa-many-to-many
