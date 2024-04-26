@@ -18,7 +18,13 @@ roles_users
 users
 users_roles
 
-### 2 - 
+### 2 - Specifica di @JoinTable
+Va molto meglio specificando la join table. Risultato
+1. Tabelle `user_role` (nome specificato in @JoinTable)
+2. Campi coi nomi definiti nelle joinColumns
+3. PK sulla coppia di campi
+4. FK corrette, ma con nomi non comprensibili
+
 
 ## Riferimenti
 https://www.baeldung.com/jpa-many-to-many
