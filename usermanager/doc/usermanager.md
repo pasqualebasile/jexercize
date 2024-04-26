@@ -1,0 +1,26 @@
+# User Manager
+
+Semplice applicazione per dimostrare la gestione delle relazioni Many To Many.
+
+## Note generali
+Per le colonne PK (cioè `Id`) usare sempre `IDENTITY` come strategia di generazione.
+
+
+## Steps
+
+### 1 - Entities + Relazioni
+Gestione delle entità e delle relazioni in maniera errata, ossia usando solo l'annotazione
+`@ManyToMany`.
+
+Così ci crea le seguenti tabelle e non è ciò che vogliamo
+roles
+roles_users
+users
+users_roles
+
+### 2 - 
+
+## Riferimenti
+https://www.baeldung.com/jpa-many-to-many
+
+
