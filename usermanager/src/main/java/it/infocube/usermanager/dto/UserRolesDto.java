@@ -12,8 +12,6 @@ import java.util.Set;
  * DTO per rappresentare un utente ed i suoi ruoli
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class UserRolesDto extends UserDto {
-    private List<Role> roles;
+    private List<RoleDto> roles;
 }

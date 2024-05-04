@@ -1,8 +1,13 @@
 package it.infocube.usermanager.dto;
 
+import it.infocube.usermanager.entities.Role;
 import it.infocube.usermanager.entities.User;
 import org.springframework.stereotype.Component;
 
+/**
+ * Componente per il mapping Entity -> Dto e vice versa per User e Role
+ * Fa riferimento ai DTO: UserDto, RoleDto, UserRolesDto
+ */
 @Component
 public class UserMapper {
 
@@ -27,8 +32,16 @@ public class UserMapper {
         userRolesDto.setId(user.getId());
         userRolesDto.setUsername(user.getUsername());
         userRolesDto.setMail(user.getMail());
-        userRolesDto.setRoles(user.getRoles());
+        userRolesDto.setRoles(user.getRoles().stream().map(this::toRoleDto).toList());
         return userRolesDto;
+    }
+
+    public RoleDto toRoleDto(Role role) {
+        RoleDto roleDto = new RoleDto();
+        roleDto.setId(role.getId());
+        roleDto.setName(role.getName());
+        roleDto.setDescription(role.getDescription());
+        return roleDto;
     }
 
 }

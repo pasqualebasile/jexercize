@@ -1,0 +1,17 @@
+meta {
+  name: getListFull
+  type: http
+  seq: 7
+}
+
+get {
+  url: http://localhost:8080/users/list
+  body: none
+  auth: none
+}
+
+tests {
+  test("Response Code is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+}

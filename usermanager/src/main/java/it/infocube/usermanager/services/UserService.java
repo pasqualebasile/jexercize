@@ -38,4 +38,13 @@ public class UserService {
         UserRolesDto userRolesDto = userMapper.toUserRolesDto(user);
         return  userRolesDto;
     }
+
+    public Iterable<UserDto> getAllUsers() {
+        Iterable<UserDto> users = userRepository.findAll().stream().map(userMapper::toUserDto).toList();
+        return users;
+    }
+
+    public Iterable<UserRolesDto> getAllUsersRoles() {
+        return userRepository.findAll().stream().map(userMapper::toUserRolesDto).toList();
+    }
 }
