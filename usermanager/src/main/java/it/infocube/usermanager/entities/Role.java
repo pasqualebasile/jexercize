@@ -1,5 +1,6 @@
 package it.infocube.usermanager.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,6 +17,9 @@ public class Role {
 
     private String name;
 
+    private String description;
+
     @ManyToMany(mappedBy = "roles")
+    @JsonIgnore
     private Set<User> users;
 }
