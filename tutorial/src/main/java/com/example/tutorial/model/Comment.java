@@ -1,19 +1,14 @@
 package com.example.tutorial.model;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 @Entity
 @Table(name = "comments")
-// @JsonIdentityInfo( generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@JsonIdentityInfo( generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "comment_generator")
@@ -24,8 +19,9 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "tutorial_id", nullable = false, foreignKey = @ForeignKey(name = "FK_Tutorial"))
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnoreProperties(value = {"comments", "hibernateLazyInitializer"}, allowSetters = true)
     // @JsonIgnore
-    // @JsonBackReference
+    // @JsonManagedReference
     private Tutorial tutorial;
 
     public Long getId() {

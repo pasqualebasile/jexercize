@@ -13,9 +13,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "tutorials")
-@JsonIdentityInfo(
-		  generator = ObjectIdGenerators.PropertyGenerator.class, 
-		  property = "id")
+@JsonIdentityInfo( generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Tutorial {
 
     @Id
@@ -32,7 +30,8 @@ public class Tutorial {
     private boolean published;
 
     @OneToMany(mappedBy = "tutorial", fetch = FetchType.LAZY)
-    @JsonBackReference
+
+    // @JsonBackReference
     private List<Comment> comments = new ArrayList<>();
 
     public Tutorial() {
