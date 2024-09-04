@@ -4,6 +4,6 @@
 **/mongo/**
 **.jar
 **.tar.**
-
+**/target/**
 
 /.metadata/
