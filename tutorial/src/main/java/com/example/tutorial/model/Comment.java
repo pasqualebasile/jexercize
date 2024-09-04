@@ -19,7 +19,7 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "tutorial_id", nullable = false, foreignKey = @ForeignKey(name = "FK_Tutorial"))
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnoreProperties(value = {"comments", "hibernateLazyInitializer"}, allowSetters = true)
+    @JsonIgnoreProperties(value = {"comments", "handler", "hibernateLazyInitializer"}, allowSetters = true)
     // @JsonIgnore
     // @JsonManagedReference
     private Tutorial tutorial;
