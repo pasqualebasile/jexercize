@@ -62,3 +62,32 @@ Porta al serving di una pagina vuota (ma senza errore)
 
 L'utilizzo di una classe WebFluxConfigurer consente di utilizzare anche folder diversi da cui servire. 
 
+
+
+In particolare, se si vuole mappare su un folder `/webs` che può essere inserito a mano in `target/classes` si può configurare una classe simile:
+
+```java
+@Configuration
+@EnableWebFlux
+public class WebConfig implements WebFluxConfigurer {
+    private static final Logger LOGGER = LoggerFactory.getLogger(WebConfig.class);
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        LOGGER.info("-->>> addResourceHandlers");
+        registry.addResourceHandler("/web/**")
+                .addResourceLocations("classpath:/webs/"); 
+        registry.addResourceHandler("/assets/**")
+                .addResourceLocations("classpath:/webs/assets/");
+    }
+}
+```
+
+
+
+Tutte le risorse con `/web` vengono prelevate da `classpath:/webs`. Nel caso di risorse con folder ulteriori, come nel caso di un'applicazione react, tutti i folder devono essere opportunamente mappati.
+
+Il folder `/webs` è in `/src/webs` di gateway e va copiato manualmente in `/target/classes` per poter funzionare correttamente.
+
+
+
