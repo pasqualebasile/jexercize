@@ -1,8 +1,8 @@
 spring:  
   application:
     name: gateway-service
-  webflux:
-    static-path-pattern: /static/**
+#  webflux:
+#    static-path-pattern: /static/**
   cloud:
     gateway:
       discovery:
@@ -10,9 +10,9 @@ spring:
           enabled: true
       routes:
 #        - id: static
-#          uri: classpath:/static/
+#          uri: classpath:/web/**
 #          predicates:
-#            - Path=/portal/**
+#            - Path=/web/**
         - id: account-service
           uri: lb://account-service
           predicates:

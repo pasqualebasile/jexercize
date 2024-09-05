@@ -41,4 +41,24 @@ Detailed description can be found here: [Microservices with Spring Boot, Spring 
 
 1. Occorre rimuovere, per i logger, gli appender STASH - che punta ad un servizio - e, se necessario, FILE.
 2. Rimossi progressivamente i riferimenti al multizone
-3. 
+
+### Web Content Serving
+
+Una risorsa statica (come `/resources/static/index.html`) viene servita [direttamente](https://www.baeldung.com/spring-webflux-static-content) `http://localhost:8080/static/index.html` senza alcuna necessità di configurazione, né nelle routes di application.yml né con una classe di WebFluxConfigurer né, infine, come indicazione di `webflux.static-path-pattern`.
+
+Anzi l'utilizzo di routes come quella riportata di seguito:
+
+```yml
+      routes:
+        - id: static
+          uri: classpath:/static/**
+          predicates:
+            - Path=/portal/**
+```
+
+Porta al serving di una pagina vuota (ma senza errore)
+
+
+
+L'utilizzo di una classe WebFluxConfigurer consente di utilizzare anche folder diversi da cui servire. 
+
