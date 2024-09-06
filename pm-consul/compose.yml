@@ -1,2 +1,63 @@
 # Project Docker Compose File
+# I servizi usano DB in memory e non postgresql
+#
 version: '3.7'
+name: pm-consul
+services:
+  consul-dev:
+    image: consul:1.15
+    ports:
+      - 127.0.0.1:8300:8300
+      - 127.0.0.1:8500:8500
+      - 127.0.0.1:8600:8600
+    command: consul agent -dev -ui -client 0.0.0.0 -log-level=INFO
+  gateway:
+    image: pm-consul/gateway-service
+    environment:
+      - CONSUL_HOST=consul-dev
+      - CONSUL_URL=consul-dev
+      - CONSUL_PORT=8500
+    ports:
+      - 8080:8080
+    depends_on:
+      - consul-dev
+  account:
+    image: pm-consul/account-service
+    environment:
+      - CONSUL_HOST=consul-dev
+      - CONSUL_URL=consul-dev
+      - CONSUL_PORT=8500
+    ports:
+      - "10100-10150:10100"
+    depends_on:
+      - consul-dev
+  customer:
+    image: pm-consul/customer-service
+    environment:
+      - CONSUL_HOST=consul-dev
+      - CONSUL_URL=consul-dev
+      - CONSUL_PORT=8500
+    ports:
+      - "10200-10250:10200"
+    depends_on:
+      - consul-dev
+  product:
+    image: pm-consul/product-service
+    environment:
+      - CONSUL_HOST=consul-dev
+      - CONSUL_URL=consul-dev
+      - CONSUL_PORT=8500
+    ports:
+      - "10400-10450:10400"
+    depends_on:
+      - consul-dev
+  order:
+    image: pm-consul/order-service
+    environment:
+      - CONSUL_HOST=consul-dev
+      - CONSUL_URL=consul-dev
+      - CONSUL_PORT=8500
+    ports:
+      - "10300-10350:10300"
+    depends_on:
+      - consul-dev

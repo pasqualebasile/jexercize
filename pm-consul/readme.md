@@ -91,3 +91,73 @@ Il folder `/webs` è in `/src/webs` di gateway e va copiato manualmente in `/tar
 
 
 
+### Scaling
+
+Lo [scaling](https://thelinuxcode.com/scale-services-in-docker-compose/) ipotizzato è basato su *docker compose*. Ogni microservizio è un container, incluso il gateway, e tutti fanno riferimento a consul e keycloak.
+
+Compose Scaling
+
+Per lanciare più copie di un servizio è sufficiente un comando come il seguente:
+
+```bash
+docker compose -f <compose_file> up --scale <SERVICE>=<INSTANCES>
+```
+
+In alternativa si può usare
+
+```bash
+docker compose -f <compose_file> scale <SERVICE>=<INSTANCE>
+```
+
+
+
+#### Consul e Container
+
+Visto che Consul è gestito con container, affinché un microservizio - dal proprio container - possa raggiungerlo non deve usare localhost ma il nome del servizio così come ricavato dal compose.
+
+Il segmento di configurazione, in application.yml, è il seguente:
+
+```yml
+spring:  
+  application:
+    name: customer-service
+  cloud:
+    consul:
+      host: ${CONSUL_HOST:localhost}
+      port: ${CONSUL_PORT:8500}
+      discovery:
+        instance-id: ${spring.application.name}:${random.uuid}
+  config:
+    import: optional:consul:${CONSUL_HOST:localhost}:${CONSUL_PORT:8500}
+```
+
+
+
+Nel file di _compose_  deve essere configurato il corretto environment. Ad esemio:
+
+```yml
+  customer:
+    image: pm-consul/customer-service
+    environment:
+      - CONSUL_HOST=consul-dev
+      - CONSUL_URL=consul-dev
+      - CONSUL_PORT=8500
+    ports:
+      - "10200-10250:10200"
+    depends_on:
+      - consul-dev
+```
+
+
+
+#### Dynamic Port
+
+Per poter specificare un range di porte in cui ricadranno le copie di scaling, è necessario una specifica come la seguente:
+
+```yml
+    ports:
+      - "10200-10250:10200"    
+```
+
+
+

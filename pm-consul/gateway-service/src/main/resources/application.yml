@@ -38,10 +38,10 @@ spring:
           filters:
             - RewritePath=/product/(?<path>.*), /$\{path}
     consul:
-      host: localhost
-      port: 8500
+      host: ${CONSUL_HOST:localhost}
+      port: ${CONSUL_PORT:8500}
   config:
-    import: optional:consul:localhost:8500
+    import: optional:consul:${CONSUL_HOST:localhost}:${CONSUL_PORT:8500}
 
 
 logging.level.com.netflix: DEBUG

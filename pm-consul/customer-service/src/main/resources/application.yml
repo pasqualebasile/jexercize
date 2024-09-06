@@ -3,10 +3,12 @@ spring:
     name: customer-service
   cloud:
     consul:
-      host: localhost
-      port: 8500
+      host: ${CONSUL_HOST:localhost}
+      port: ${CONSUL_PORT:8500}
+      discovery:
+        instance-id: ${spring.application.name}:${random.uuid}
   config:
-    import: optional:consul:localhost:8500
+    import: optional:consul:${CONSUL_HOST:localhost}:${CONSUL_PORT:8500}
       
 logging:
   level:
@@ -14,21 +16,3 @@ logging:
 
 server:
   port: 10200
-#---
-#spring:
-#  cloud:
-#    consul:
-#      discovery:
-#        instanceZone: zone1
-#  config:
-#    activate:
-#      on-profile: zone1
-#---
-#spring:
-#  cloud:
-#    consul:
-#      discovery:
-#        instanceZone: zone2
-#  config:
-#    activate:
-#      on-profile: zone2
